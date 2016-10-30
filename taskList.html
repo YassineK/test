@@ -1,0 +1,49 @@
+<h1>Task List</h1>
+<div>
+    <ul class="pagination">
+        <li ng-repeat="page in pages">
+            <a href="#" ng-click="setCurrentPage(page)">
+                {{page}}
+            </a>
+        </li>
+    </ul>
+</div>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th ng-click="setChampTri('id')">ID</th>
+            <th ng-click="setChampTri('title')">Title</th>
+            <th ng-click="setChampTri('context')">Context</th>
+            <th ng-click="setChampTri('priority')">Priority</th>
+            <th ng-click="setChampTri('completed')">Completed</th>
+            <th ng-click="setChampTri('endDate')">End Date</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tr ng-repeat="task in tasks | orderBy: champTri track by $index" >
+        <td>{{task.id}}</td>
+        <td>{{task.title}}</td>
+        <td>{{task.context}}</td>
+        <td>{{task.priority}}</td>
+        <td>{{task.completed}}</td>
+        <td>{{task.endDate}}</td>
+        <td>
+            <div class="btn-group">
+                <button class="btn btn-danger"
+                        ng-click="deleteTask(task.id)" >
+                    <span class="glyphicon glyphicon-remove pull-left"> </span>
+                    <span class="pull-right">Delete</span>
+                </button>
+                <button class="btn btn-primary"
+                        ng-click="editTask(task.id)" >
+                    <span class="glyphicon glyphicon-pencil pull-left"> </span>
+                    <span class="pull-right">Edit</span>
+                </button>
+                <button class="btn btn-success"
+                        ng-click="completeTask(task.id)">
+                    <span>Task Completed</span>
+                </button>
+            </div>
+        </td>
+    </tr>
+</table>

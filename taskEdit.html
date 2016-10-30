@@ -1,0 +1,69 @@
+<h1>Task List</h1>
+<form name="taskForm"
+        ng-submit="saveTask(newTask)"
+        novalidate>
+    <input type="hidden"
+            name="taskID"
+            ng-model="newTask.id" />
+    <div class="form-group">
+        <label for="taskTitle">Title</label>
+        <input type="text"
+                name="taskTitle"
+                class="form-control"
+                ng-model="newTask.title"
+                ng-required="true"
+                ng-minlength="3"
+                ng-maxlength="50" />
+        <span ng-show="taskForm.taskTitle.$dirty">
+        <span class="error-label" ng-show="taskForm.taskTitle.$error.minlength">too short</span>
+        <span class="error-label" ng-show="taskForm.taskTitle.$error.maxlength">too long</span>
+        </span>
+    </div>
+    <div class="form-group">
+        <label for="taskContext">Context</label>
+        <input type="text"
+                name="taskContext"
+                class="form-control"
+                ng-model="newTask.context"
+                ng-required="true"
+                ng-minlength="3"
+                ng-maxlength="100" />
+        <span ng-show="taskForm.taskContext$dirty">
+        <span class="error-label" ng-show="taskForm.taskContext.$error.minlength">too short</span>
+        <span class="error-label" ng-show="taskForm.taskContext.$error.maxlength">too long</span>
+        </span>
+    </div>
+    <div class="form-group">
+        <label for="taskPriority">Priority</label>
+        <input type="number"
+                name="taskPriority"
+                class="form-control"
+                ng-model="newTask.priority"
+                ng-required="true"
+                ng-min="1"
+                ng-max="10" />
+        <span ng-show="taskForm.taskPriority.$dirty">
+        <span class="error-label" ng-show="taskForm.taskPriority.$error.required">priority must be set</span>    
+        <span class="error-label" ng-show="taskForm.taskPriority.$error.min">priority can't be under 0</span>
+        <span class="error-label" ng-show="taskForm.taskPriority.$error.max">priority can't be higher than 10</span>
+        </span>
+        
+    </div>
+   <div class="form-group">
+        <label for="taskCompleted">Completed</label>
+        <input type="checkbox"
+                name="taskCompleted"
+                class="form-control"
+                ng-model="newTask.completed" />
+    </div>
+    <div class="form-group">
+        <label for="taskendDate">End Date</label>
+        <input type="String"
+                name="taskendDate"
+                class="form-control"
+                ng-model="newTask.endDate" />
+    </div>
+    <button type="submit" ng-disabled="taskForm.$invalid" class="btn btn-primary btn-block">
+        Add
+    </button>
+</form>
